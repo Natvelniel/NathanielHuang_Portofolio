@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #F2EFE7;
+  --bg-surface: #E8E4DA;
+  --bg-surface-elevated: #DFD9CD;
+  --text-primary: #171918;
+  --text-secondary: #585F5B;
+  --text-muted: #7E8682;
+  --border-subtle: #D8D2C5;
+  --border-strong: #BCB5A5;
+  --accent-orange: #D97745;
+  --accent-orange-hover: #C46535;
+  --accent-orange-subtle: #F6ECE5;
+  --accent-orange-contrast: #FFFFFF;
+}
+
+.dark {
+  --bg-primary: #171918;
+  --bg-surface: #202322;
+  --bg-surface-elevated: #282C2A;
+  --text-primary: #F2EFE7;
+  --text-secondary: #B0B9B4;
+  --text-muted: #7A847F;
+  --border-subtle: #2C312E;
+  --border-strong: #404743;
+  --accent-orange: #D97745;
+  --accent-orange-hover: #E48656;
+  --accent-orange-subtle: #2D231D;
+  --accent-orange-contrast: #FFFFFF;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--accent-orange);
+    color: #FFFFFF;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Editorial hairline borders */
+.editorial-border-b {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.editorial-border-t {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.editorial-border-l {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.editorial-border-r {
+  border-right: 1px solid var(--border-subtle);
+}
+
+/* Custom focus styles for strict accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 2px;
+}
