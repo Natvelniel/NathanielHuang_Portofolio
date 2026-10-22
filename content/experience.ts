@@ -1,75 +1,91 @@
+export interface KeyDate {
+  label: string;
+  value: string;
+}
+
 export interface Experience {
   id: string;
+  title: string;
+  /** Short expansion of the name, shown only when the PRD states it. */
+  fullName?: string;
   role: string;
-  organization: string;
-  period: string;
-  appointmentDate?: string;
-  eventDate?: string;
-  context: string;
-  responsibilities: string[];
-  metricsAndScale: {
-    label: string;
-    value: string;
-    clarification: string;
-  };
-  keyLearnings: string[];
-  integrityNote: string;
+  summary: string;
+  dates?: KeyDate[];
+  /** Verified facts only. */
+  facts: string[];
+  /** Context the reader needs to interpret a fact correctly. */
+  context?: string;
+  /** Rendered as an expandable case study when true (PRD FR-03). */
+  expandable: boolean;
 }
 
 export const experiences: Experience[] = [
   {
     id: "okap-2026",
-    role: "Project Leader",
-    organization: "OKAP 2026 (Student Orientation Program)",
-    period: "June 2026 – August 2026",
-    appointmentDate: "19 June 2026",
-    eventDate: "20 August 2026",
+    title: "OKAP 2026",
+    fullName: "Orientasi Kehidupan Akademik Program Studi Sistem Informasi",
+    role: "Chair / project lead",
+    summary:
+      "First experience leading a project: a required orientation for new Information Systems students, prepared on a limited timeline with a remotely coordinated committee.",
+    dates: [
+      { label: "Appointed", value: "19 June 2026" },
+      { label: "Committee assembled", value: "by 11 July 2026" },
+      { label: "Event", value: "20 August 2026" },
+    ],
+    facts: [
+      "Defined the event's purpose as a short introduction and guide to the Information Systems program.",
+      "Planned the timeline and delegated responsibilities.",
+      "Coordinated committee members working from different locations.",
+      "Coordinated with BPM regarding the faculty-level orientation.",
+      "Ran a final briefing before the event.",
+    ],
     context:
-      "First major leadership appointment directing a faculty-level orientation project with compressed preparation timelines and distributed remote coordination.",
-    responsibilities: [
-      "Assembled and structured the organizing committee within three weeks of appointment.",
-      "Defined strategic event milestones, scheduling, and risk mitigation protocols.",
-      "Coordinated cross-divisional committee workflows and managed communication with faculty stakeholders.",
-      "Conducted comprehensive pre-event briefings and led operational execution on event day.",
-    ],
-    metricsAndScale: {
-      label: "Freshmen Participants",
-      value: "40+ Participants",
-      clarification:
-        "Attendance was part of official university orientation curriculum. Metrics reflect operational coordination scale, not voluntary audience recruitment.",
-    },
-    keyLearnings: [
-      "Transitioned from individual problem-solving to collective enablement and delegation.",
-      "Learned to maintain team focus and morale despite remote asynchronous constraints.",
-      "Built structured check-in cadences to identify delivery bottlenecks before deadlines.",
-    ],
-    integrityNote: "Verified leadership role. Participant count reflects official enrollment scale.",
+      "More than 40 new students attended. OKAP is a required orientation, so attendance is context only and not a measure of audience acquisition.",
+    expandable: true,
   },
   {
     id: "masasi-2026",
-    role: "Program Coordinator (Person in Charge)",
-    organization: "MASASI 2026 — HMSI Internship Program",
-    period: "September 2026 – October 2026",
-    context:
-      "Coordinated the student internship onboarding initiative for the Information Systems Student Association (HMSI), bridging prospective student interns with divisional responsibilities.",
-    responsibilities: [
-      "Published and communicated program guidelines, prerequisites, and timelines to freshmen.",
-      "Administered the centralized registration intake process (20–27 September 2026).",
-      "Organized and scheduled candidate interview sessions commencing 2 October 2026.",
-      "Maintained regular operational alignment with the HMSI Chairperson and divisional leads.",
-      "Announced placements and facilitated introductory onboarding.",
+    title: "MASASI 2026",
+    fullName: "Magang Bareng HMSI",
+    role: "Person in charge of the program",
+    summary:
+      "Coordinated a recruitment program for a limited internship capacity, alongside academic responsibilities.",
+    dates: [
+      { label: "Registration", value: "20–27 September 2026" },
+      { label: "Interviews began", value: "2 October 2026" },
     ],
-    metricsAndScale: {
-      label: "Program Placements",
-      value: "6 Placed Applicants",
-      clarification:
-        "Six prospective applicants registered for the available capacity; all six completed review and were successfully placed across their preferred divisions.",
-    },
-    keyLearnings: [
-      "Balanced high-touch human communication with strict adherence to academic and scheduling constraints.",
-      "Managed leadership duties in tandem with concurrent technical coursework deadlines.",
-      "Understood that clear procedural transparency creates psychological safety for applicants.",
+    facts: [
+      "Shared program information.",
+      "Managed the registration form.",
+      "Coordinated interviews and communicated announcements.",
+      "Kept the program aligned with the HMSI Chair.",
+      "Six applicants registered for the limited capacity; all six were accepted and placed according to the distribution of their preferred divisions.",
     ],
-    integrityNote: "Verified coordination role. Placement reflects interest-matched onboarding, not competitive elimination.",
+    expandable: true,
+  },
+  {
+    id: "iscd",
+    title: "ISCD",
+    fullName: "Information Systems Creative Day",
+    role: "Event division member and Master of Ceremonies",
+    summary:
+      "An event associated with the Information Systems program anniversary. The contribution covered planning as well as stage delivery.",
+    facts: [
+      "Participated in the event division.",
+      "Contributed to planning the overall event, including the rundown.",
+      "Served as MC and coordinated delivery with the MC partner.",
+      "Prepared cue cards and their content.",
+      "Used the role to practice public speaking.",
+    ],
+    expandable: false,
+  },
+  {
+    id: "sosial-mahasiswa",
+    title: "Sosial Mahasiswa, HMSI",
+    role: "Division member; responsible for Student Committee",
+    summary:
+      "Sosial Mahasiswa is the HMSI division I participate in. The Student Committee responsibility falls within this division.",
+    facts: [],
+    expandable: false,
   },
 ];

@@ -1,49 +1,31 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Colors map to CSS variables defined in app/globals.css so there is one
+ * source of truth. Contrast ratios (against ivory #F2EFE7 unless noted):
+ *   charcoal 15.38:1 | muted 5.13:1 | accent-ink 4.77:1
+ *   charcoal text on accent 5.62:1 | accent text on charcoal 5.62:1
+ * Pure accent (#D97745) on ivory is only 2.74:1, so it is never used as text there.
+ */
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  darkMode: "class",
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        charcoal: {
-          DEFAULT: "#171918",
-          surface: "#202322",
-          border: "#2E3330",
-          muted: "#9EABA4",
-          light: "#2A2E2C",
-        },
-        ivory: {
-          DEFAULT: "#F2EFE7",
-          surface: "#E8E4DA",
-          border: "#D8D2C5",
-          muted: "#6B726E",
-          hover: "#E2DDCF",
-        },
-        orange: {
-          DEFAULT: "#D97745",
-          hover: "#C46535",
-          light: "#F5ECE5",
-          muted: "#E89B73",
-        },
+        ivory: "var(--ivory)",
+        charcoal: "var(--charcoal)",
+        muted: "var(--muted)",
+        rule: "var(--rule)",
+        accent: "var(--accent)",
+        "accent-ink": "var(--accent-ink)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Inter", "sans-serif"],
-        mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
-      },
-      letterSpacing: {
-        tighter: "-0.04em",
-        tight: "-0.02em",
-        normal: "0em",
-        wide: "0.04em",
-        widest: "0.12em",
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       maxWidth: {
-        prose: "68ch",
+        page: "72rem",
+        measure: "65ch",
       },
     },
   },

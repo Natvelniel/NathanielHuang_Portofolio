@@ -17,16 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "The Curious Builder — Nathaniel Christian Susanto",
   description:
-    "Personal portfolio of Nathaniel Christian Susanto. Information Systems undergraduate at UKDW concentrating in Data Analytics and Software Development. Curious by nature. Building by choice.",
-  keywords: [
-    "Nathaniel Christian Susanto",
-    "The Curious Builder",
-    "Information Systems",
-    "Data Analytics",
-    "Software Development",
-    "UKDW",
-    "Machine Learning",
-  ],
+    "Nathaniel Christian Susanto is an Information Systems student at UKDW (Data Analytics concentration) working across data analytics, software development, and leadership & organization.",
   authors: [{ name: "Nathaniel Christian Susanto" }],
 };
 
@@ -38,12 +29,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased">
+      <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-charcoal focus:px-4 focus:py-2 focus:text-ivory"
+        >
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

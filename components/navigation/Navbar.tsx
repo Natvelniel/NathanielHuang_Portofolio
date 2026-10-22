@@ -1,141 +1,126 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { personalInfo } from "@/content/personal";
-import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
+
+const items = personalInfo.navigation;
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
+  // Subtle current-section indicator.
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const sections = items
+      .map((item) => document.getElementById(item.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px" },
+    );
+    sections.forEach((el) => observer.observe(el));
+
+    const onScroll = () => {
+      if (window.scrollY < 200) setActive("");
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    // Initial theme check
-    const savedTheme = localStorage.getItem("cb-theme") as "light" | "dark" | null;
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-    if (initialTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    setTheme(nextTheme);
-    localStorage.setItem("cb-theme", nextTheme);
-    if (nextTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
+  // Escape closes the mobile menu and returns focus to its button.
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[var(--bg-primary)]/90 backdrop-blur-md editorial-border-b py-3 shadow-xs"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between">
-        {/* Brand Monogram */}
+    <header className="sticky top-0 z-40 border-b border-rule bg-ivory">
+      <div className="relative mx-auto flex h-[var(--header-h)] max-w-page items-center justify-between px-5 sm:px-8">
         <a
-          href="#"
-          className="group flex items-baseline gap-2 text-[var(--text-primary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-orange)] rounded-xs"
-          aria-label="The Curious Builder — Home"
+          href="#top"
+          className="inline-flex min-h-11 items-center font-semibold tracking-[-0.01em]"
+          onClick={() => setOpen(false)}
         >
-          <span className="font-mono text-xs font-semibold uppercase tracking-widest px-2 py-0.5 bg-[var(--bg-surface)] editorial-border-b text-[var(--text-primary)] rounded-xs">
-            NCS
-          </span>
-          <span className="font-sans font-semibold tracking-tight text-sm sm:text-base group-hover:text-[var(--accent-orange)] transition-colors">
-            The Curious Builder
-          </span>
+          The Curious Builder
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7" aria-label="Main Navigation">
-          {personalInfo.navigation.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[var(--accent-orange)] hover:after:w-full after:transition-all"
-            >
-              {item.label}
-            </a>
-          ))}
+        <nav aria-label="Primary" className="hidden md:block">
+          <ul className="flex items-center gap-8">
+            {items.map((item) => {
+              const id = item.href.slice(1);
+              const isActive = active === id;
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`inline-flex min-h-11 items-center border-b-2 text-sm font-medium transition-colors duration-150 hover:border-charcoal ${
+                      isActive ? "border-accent" : "border-transparent"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </nav>
 
-        {/* Controls & CTA */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            className="p-2 rounded-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors focus-visible:ring-2 focus-visible:ring-[var(--accent-orange)]"
-          >
-            {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
-          </button>
+        <button
+          ref={buttonRef}
+          type="button"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center px-3 text-sm font-medium md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? "Close" : "Menu"}
+          <span className="sr-only"> navigation</span>
+        </button>
 
-          <a
-            href="#contact"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider bg-[var(--text-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-orange)] hover:text-white transition-all rounded-xs font-medium"
-          >
-            <span>Connect</span>
-            <ArrowUpRight size={14} />
-          </a>
-
-          {/* Mobile menu trigger */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation menu"
-            className="md:hidden p-2 text-[var(--text-primary)] hover:bg-[var(--bg-surface)] rounded-xs focus-visible:ring-2 focus-visible:ring-[var(--accent-orange)]"
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
+        <nav
+          id="mobile-nav"
+          aria-label="Primary mobile"
+          hidden={!open}
+          className="absolute left-0 right-0 top-full border-b border-rule bg-ivory md:hidden"
+        >
+          <ul className="px-5 pb-3 sm:px-8">
+            {items.map((item) => {
+              const id = item.href.slice(1);
+              return (
+                <li key={item.href} className="border-t border-rule first:border-t-0">
+                  <a
+                    href={item.href}
+                    aria-current={active === id ? "true" : undefined}
+                    className="flex min-h-12 items-center text-base font-medium"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                    {active === id ? <span className="label ml-3">current section</span> : null}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </div>
-
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[var(--bg-primary)] editorial-border-b px-6 py-6 transition-all animate-in fade-in slide-in-from-top-2">
-          <div className="flex flex-col gap-4">
-            <div className="font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
-              Navigation
-            </div>
-            {personalInfo.navigation.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-[var(--text-primary)] hover:text-[var(--accent-orange)] transition-colors py-1"
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="pt-3 border-t border-[var(--border-subtle)]">
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between w-full px-4 py-2.5 text-xs font-mono uppercase tracking-wider bg-[var(--accent-orange)] text-white font-medium rounded-xs text-center"
-              >
-                <span>Initiate Contact</span>
-                <ArrowUpRight size={15} />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

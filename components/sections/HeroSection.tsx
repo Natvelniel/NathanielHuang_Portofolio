@@ -1,113 +1,57 @@
-import React from "react";
+import Image from "next/image";
 import { personalInfo } from "@/content/personal";
-import { ArrowDown, Database, Terminal, GitBranch, Sparkles } from "lucide-react";
 
 export default function HeroSection() {
-  return (
-    <section className="pt-32 pb-20 md:pt-40 md:pb-28 max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
-      {/* Eyebrow Label */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--bg-surface)] editorial-border-b text-xs font-mono uppercase tracking-widest text-[var(--accent-orange)] mb-6 rounded-xs">
-        <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-orange)] animate-pulse" />
-        <span>{personalInfo.eyebrow}</span>
-      </div>
+  const { name, role, concentration, positioning, tagline, heroIntro, portrait } = personalInfo;
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-        {/* Left Column: Headline and Positioning */}
-        <div className="lg:col-span-8 flex flex-col justify-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[var(--text-primary)] leading-[1.08] mb-6">
-            Nathaniel Christian{" "}
-            <span className="text-[var(--text-secondary)] font-normal block sm:inline">
-              Susanto.
-            </span>
+  return (
+    <section id="top" aria-labelledby="hero-heading" className="mx-auto max-w-page px-5 pb-20 pt-14 sm:px-8 md:pb-32 md:pt-24">
+      <div className={portrait ? "grid items-end gap-12 md:grid-cols-12" : undefined}>
+        <div className={portrait ? "md:col-span-8" : undefined}>
+          <p className="label uppercase tracking-[0.12em]">{positioning.join(" · ")}</p>
+
+          <h1
+            id="hero-heading"
+            className="mt-8 text-balance text-[clamp(2.75rem,1.5rem+5vw,5rem)] font-semibold leading-[1.02] tracking-[-0.03em]"
+          >
+            {name}
           </h1>
 
-          <p className="text-xl sm:text-2xl font-medium text-[var(--accent-orange)] italic tracking-tight mb-6">
-            &ldquo;{personalInfo.tagline}&rdquo;
+          <p className="label mt-5">
+            {role} · Concentration: {concentration}
           </p>
 
-          <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-2xl mb-10">
-            {personalInfo.positioningStatement}
-          </p>
+          <div className="mt-12 max-w-measure">
+            <span aria-hidden="true" className="block h-0.5 w-12 bg-accent" />
+            <p className="mt-5 text-2xl font-medium leading-snug tracking-[-0.01em]">{tagline}</p>
+            <p className="mt-5 text-muted">{heroIntro}</p>
+          </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <a
-              href="#projects"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-orange)] hover:bg-[var(--accent-orange-hover)] text-white font-mono text-xs uppercase tracking-wider font-semibold rounded-xs transition-colors shadow-xs"
+              href="#works"
+              className="inline-flex min-h-12 items-center bg-accent px-6 font-medium text-charcoal transition-colors duration-150 hover:bg-charcoal hover:text-ivory"
             >
-              <span>Explore Selected Work</span>
-              <ArrowDown size={15} />
+              Explore My Work
             </a>
-
-            <a
-              href="#about"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] text-[var(--text-primary)] editorial-border-b font-mono text-xs uppercase tracking-wider font-medium rounded-xs transition-colors"
-            >
-              <span>Academic Context & Philosophy</span>
+            <a href="#about" className="inline-flex min-h-11 items-center text-link font-medium">
+              About Me
             </a>
           </div>
         </div>
 
-        {/* Right Column: Editorial Metadata Matrix */}
-        <div className="lg:col-span-4 bg-[var(--bg-surface)] p-6 sm:p-7 rounded-xs editorial-border-b space-y-6">
-          <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-3">
-            <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)]">
-              Academic Dossier
-            </span>
-            <span className="font-mono text-[11px] text-[var(--accent-orange)] font-semibold">
-              UKDW · IS
-            </span>
+        {portrait ? (
+          <div className="md:col-span-4">
+            <Image
+              src={portrait.src}
+              alt={portrait.alt}
+              width={640}
+              height={800}
+              priority
+              className="h-auto w-full"
+            />
           </div>
-
-          <div className="space-y-4 text-xs font-mono">
-            <div>
-              <div className="text-[var(--text-muted)] uppercase tracking-wider text-[10px] mb-1">
-                Institution
-              </div>
-              <div className="text-[var(--text-primary)] font-sans font-medium text-sm">
-                Universitas Kristen Duta Wacana
-              </div>
-              <div className="text-[var(--text-secondary)] text-[11px]">
-                Faculty of Information Technology
-              </div>
-            </div>
-
-            <div className="pt-2 border-t border-[var(--border-subtle)]">
-              <div className="text-[var(--text-muted)] uppercase tracking-wider text-[10px] mb-1">
-                Concentration
-              </div>
-              <div className="inline-flex items-center gap-1.5 text-[var(--accent-orange)] font-semibold">
-                <Database size={13} />
-                <span>Data Analytics</span>
-              </div>
-            </div>
-
-            <div className="pt-2 border-t border-[var(--border-subtle)]">
-              <div className="text-[var(--text-muted)] uppercase tracking-wider text-[10px] mb-1">
-                Core Inquiry Areas
-              </div>
-              <ul className="space-y-1 text-[var(--text-secondary)] font-sans text-xs">
-                <li className="flex items-center gap-1.5">
-                  <Terminal size={12} className="text-[var(--accent-orange)] shrink-0" />
-                  <span>Software Systems Engineering</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <GitBranch size={12} className="text-[var(--accent-orange)] shrink-0" />
-                  <span>Quantitative Code Health Analysis</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <Sparkles size={12} className="text-[var(--accent-orange)] shrink-0" />
-                  <span>Systems Thinking & Tech Philosophy</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="pt-2 border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-muted)]">
-              <span>Location</span>
-              <span className="text-[var(--text-primary)]">Yogyakarta, ID</span>
-            </div>
-          </div>
-        </div>
+        ) : null}
       </div>
     </section>
   );
