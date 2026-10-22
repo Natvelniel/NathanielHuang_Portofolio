@@ -1,514 +1,595 @@
-# PRD: The Curious Builder
-**Personal Portfolio Website**
+# PRODUCT REQUIREMENTS DOCUMENT (PRD)
+## Personal Portfolio Website — The Curious Builder
 
-| Field | Description |
-|---|---|
-| Project Name | The Curious Builder |
-| Product Type | Personal Portfolio Website |
-| Owner | Nathaniel Christian Susanto |
-| Academic Institution | Universitas Kristen Duta Wacana (UKDW) |
-| Academic Field | Information Systems |
-| Academic Concentration | Data Analytics |
-| Status | Initial Draft |
+**Versi:** 1.1  
+**Status:** Draft, menunggu verifikasi konten akhir  
+**Platform:** Responsive personal website  
+**Target deployment:** Vercel  
+**Primary tools:** Google Antigravity, UI UX Max, GitHub  
+**Target audience:** Recruiter, software development teams, mahasiswa, dosen, dan calon kolaborator
 
 ---
 
 ## 1. Product Overview
 
-The Curious Builder is a personal portfolio website that presents the owner's academic background, technical projects, organizational experiences, and intellectual interests.
+### 1.1 Product Vision
 
-The website should communicate three core dimensions:
+Membangun website portofolio personal yang merepresentasikan identitas, kemampuan teknis, pengalaman organisasi, dan rasa ingin tahu intelektual pemiliknya.
 
-1. **Technical Exploration:** Software development, data analytics, artificial intelligence, and technology-related projects.
-2. **Leadership and Collaboration:** Experiences in student organizations, project coordination, event management, and teamwork.
-3. **Intellectual Curiosity:** Critical thinking, philosophy, systems thinking, and an interest in understanding how technology interacts with people and organizations.
+Website ini tidak hanya menjadi tempat menampilkan proyek, tetapi juga menunjukkan cara pemiliknya berpikir, belajar, bekerja sama, dan menghadapi masalah. Semua klaim harus sesuai dengan pengalaman nyata dan status pekerjaan terkini.
 
-The website must feel like a carefully designed personal publication rather than a generic developer portfolio generated from a template.
+### 1.2 Core Identity
 
-### Tagline
+**Brand name:** The Curious Builder  
+**Primary tagline:** Curious by nature. Building by choice.
 
-"Curious by nature. Building by choice."
+**Academic background:** Mahasiswa Sistem Informasi, Universitas Kristen Duta Wacana (UKDW), Yogyakarta  
+**Concentration:** Data Analytics
 
-### Core Objective
+**Positioning:** Data Analytics | Software Development | Leadership & Organization
 
-Create a distinctive, credible, and maintainable personal portfolio that explains not only what the owner has built, but also how the owner thinks, learns, collaborates, and develops.
+**Brand statement:**
 
----
+I am an Information Systems student exploring how data, software, and people work together. I learn by analyzing data, contributing to software projects, and taking responsibility in collaborative environments.
 
-## 2. Target Audience
+I value curiosity, structured thinking, and honest progress. I aim to show not only what I have worked on, but also what I am learning and how I contribute.
 
-The website should serve the following audiences:
+### 1.3 Brand Pillars
 
-- Recruiters and potential employers.
-- Internship coordinators and hiring managers.
-- Academic peers, lecturers, and collaborators.
-- Student organization members and prospective project collaborators.
-- People interested in the owner's technical work and personal interests.
+**Data Analytics**  
+Showcase coursework and practical work involving data analysis, visualization, and introductory predictive-modeling exercises. Clearly distinguish analytical work from machine-learning exercises.
 
-The content should be understandable to both technical and non-technical visitors.
+**Software Development**  
+Show real software contributions, including the owner's current backend work on EV ChargeHub. Clearly label work that is still in development.
 
----
+**Leadership & Organization**  
+Show concrete responsibilities in student organizations, event planning, program coordination, communication, and teamwork.
 
-## 3. Personal Positioning
+**Curiosity & Exploration**  
+Optionally publish concise notes on technology, information systems, philosophy, and critical thinking. Publish only entries that have actually been written and reviewed.
 
-### Primary Identity
+### 1.4 Product Principles
 
-Information Systems Student | Data Analytics | Software Development
-
-### Academic Background
-
-- Institution: Universitas Kristen Duta Wacana (UKDW).
-- Field of study: Information Systems.
-- Academic concentration: Data Analytics.
-
-### Positioning Statement
-
-"I explore the intersection of data, technology, and human thinking, turning questions into systems, insights, and meaningful projects."
-
-This positioning describes the owner's interests and direction. It must not imply professional expertise or achievements that have not been demonstrated.
-
-### Areas of Interest
-
-- Data analytics and data-driven decision-making.
-- Software development and application engineering.
-- Artificial intelligence and machine learning.
-- Information systems and business processes.
-- UI/UX design and digital product development.
-- Philosophy, critical thinking, and systems thinking.
+1. Authenticity over exaggeration.
+2. Clear information over decorative complexity.
+3. Demonstrated work over self-proclaimed expertise.
+4. Distinctive visual identity over generic AI-generated aesthetics.
+5. Explicit project status over implied completion.
+6. Progressive improvement over premature perfection.
 
 ---
 
-## 4. Design Direction
+## 2. Problem Statement
 
-### Design Concept
+Many student portfolios focus exclusively on listing technologies, displaying project screenshots, and assigning arbitrary proficiency percentages to skills.
 
-**Editorial Minimalism with a Subtle Developer Aesthetic**
+This website should communicate a more complete professional identity. It must answer three questions:
 
-The design should combine the clarity of an editorial publication with the precision and structure associated with technology.
+- What kinds of technical work has the owner actually done?
+- How does the owner contribute to a team or organization?
+- What makes the owner's approach to learning and problem-solving distinctive?
 
-It should feel personal, thoughtful, mature, and intentionally designed.
-
-### Visual Principles
-
-- Strong typography and clear visual hierarchy.
-- Generous whitespace.
-- Restrained use of color.
-- Asymmetrical layouts where they improve composition.
-- Thoughtful use of dividers, labels, and small technical details.
-- Large, readable headings.
-- Content-first layouts rather than decorative containers.
-- Subtle, purposeful interaction and animation.
-
-### Color Palette
-
-| Token | Hex | Purpose |
-|---|---|---|
-| Charcoal | `#171918` | Primary dark background and text |
-| Warm Ivory | `#F2EFE7` | Primary light background |
-| Burnt Orange | `#D97745` | Accent color and interactive highlights |
-
-Use the palette consistently. Accent colors should guide attention, not decorate every element.
-
-### Typography
-
-- Primary typeface: Manrope or Inter.
-- Technical metadata: JetBrains Mono.
-- Use a clear hierarchy between display headings, section headings, body copy, and metadata.
-- Avoid excessive font sizes, inconsistent weights, and unnecessary uppercase text.
-
-### Avoid Generic AI-Generated Design
-
-Do not use the following as default design solutions:
-
-- Excessive gradients.
-- Glassmorphism without a functional reason.
-- Repeated rounded cards for every section.
-- Fake terminal windows and decorative code blocks.
-- Random floating icons and abstract 3D objects.
-- Unnecessary glowing effects.
-- Excessive scroll-triggered animations.
-- Generic stock imagery that does not represent the owner.
-- Repetitive project cards with identical layouts throughout the page.
-
-Every visual element should serve a communication, navigation, or usability purpose.
+The result should feel like a thoughtfully designed personal publication, not a generic SaaS landing page.
 
 ---
 
-## 5. Information Architecture
+## 3. Target Audience
 
-The website should initially be a single-page portfolio with clearly separated sections. Individual project detail pages can be introduced later if the content justifies them.
+### Primary Audience: Recruiters and Hiring Teams
 
-### 5.1 Hero Section
+They need to quickly understand the owner's academic focus, practical technical experience, project contributions, and potential fit for internship or entry-level opportunities.
 
-Purpose: Establish the owner's identity and positioning immediately.
+### Secondary Audience: Developers and Collaborators
 
-Required content:
+They want to explore projects, understand the owner's specific responsibilities, inspect source code where available, and identify potential collaboration opportunities.
 
+### Secondary Audience: Academic Community
+
+Lecturers and fellow students may be interested in coursework, analytical exercises, organizational experiences, and interdisciplinary thinking.
+
+---
+
+## 4. Information Architecture
+
+The first release will use a single-page structure with clearly defined sections and anchor navigation. Detailed case studies may be added when enough verified material is available.
+
+### 4.1 Home / Hero
+
+**Purpose:** Communicate identity and positioning immediately.
+
+Content:
 - Name: Nathaniel Christian Susanto.
-- Academic and professional positioning.
-- Main tagline: "Curious by nature. Building by choice."
-- A short introduction.
-- Primary call to action: Explore Projects.
-- Secondary call to action: About Me or Contact.
+- Academic role: Information Systems Student, UKDW.
+- Concentration: Data Analytics.
+- Positioning: Data Analytics | Software Development | Leadership & Organization.
+- Tagline: “Curious by nature. Building by choice.”
+- Short introduction connecting data, software, and collaborative work.
+- Primary CTA: Explore My Work.
+- Secondary CTA: About Me.
+- Optional portrait or distinctive visual element, only if supplied.
 
-Suggested eyebrow text:
+The first screen should communicate personality without requiring visitors to read a long biography.
 
-`INFORMATION SYSTEMS · DATA ANALYTICS · SOFTWARE DEVELOPMENT`
+### 4.2 Selected Works
 
-Suggested introduction:
+**Purpose:** Demonstrate practical technical capabilities using accurate descriptions of scope and status.
 
-"I explore the intersection of data, technology, and human thinking, turning questions into systems, insights, and meaningful projects."
+Each project entry should include, when available:
+- Project name and context.
+- Objective or problem being addressed.
+- Owner's role and specific contribution.
+- Confirmed technologies.
+- Current status.
+- Implementation details, challenges, and lessons learned.
+- Repository, demo, screenshots, or other evidence only when available and valid.
 
-The hero must communicate identity without overwhelming visitors with too much text.
+#### Project A: EV ChargeHub
 
-### 5.2 About Section
+**Category:** Software Development  
+**Context:** Team project for a Rekayasa Perangkat Lunak (RPL) course.  
+**Status:** In development with the team.  
+**Owner's focus:** Backend development.  
+**Confirmed backend technologies:** Laravel and PHP.  
+**Confirmed responsibility areas:**
+- Business logic.
+- Authentication and authorization.
+- Database operations and queries.
 
-Purpose: Introduce the person behind the projects.
+**Frontend context:** The project uses Vue.js on the frontend. Do not imply that the owner personally implemented the frontend unless confirmed.
 
-Cover:
+**Content rules:**
+- Label the project as “In Development” or an equivalent status.
+- Describe the owner as responsible for backend work, not as the sole creator of the entire application.
+- Do not claim that authentication, authorization, APIs, database schema, or other features are completed until their implementation and status are confirmed.
+- Do not invent project requirements, user counts, performance metrics, deployment status, repository links, or screenshots.
 
-- Academic background in Information Systems.
-- Academic concentration in Data Analytics.
-- Interest in software development and emerging technologies.
-- Experiences learning through academic projects and organizational responsibilities.
-- Intellectual interests that influence the owner's approach to problem-solving.
+**Still to confirm before publication:**
+- Exact backend features already implemented versus planned.
+- Database engine and current schema/relationship work.
+- Whether APIs are being developed and how the frontend integrates with the backend.
+- Team composition and the owner's exact division of work.
+- Repository URL and whether it is public.
+- Screenshots or a demo that may be shared publicly.
 
-The writing should be personal but professional. Avoid generic statements such as "I am a passionate and highly motivated individual" unless supported by a specific example.
+#### Project B: Data Analytics — Business Data Analysis
 
-### 5.3 Selected Projects
+**Category:** Data Analytics  
+**Context:** The owner has used Python for business data analysis.  
+**Confirmed tools/libraries:** Python, SciPy, Pandas, and Matplotlib.
 
-Purpose: Demonstrate technical exploration and practical problem-solving.
+The project card or case study should describe the actual business question, dataset, analysis steps, visualization, and findings only after those details are verified. At present, the dataset, business problem, analysis output, and conclusions are not yet known.
 
-Potential projects to evaluate for inclusion:
+**Still to confirm before publication:**
+- Dataset and business context.
+- Main question or objective.
+- Specific use of SciPy, Pandas, and Matplotlib.
+- Key findings or visualizations.
+- Whether the work was an individual or group assignment.
+- Whether the data and resulting work can be shown publicly.
 
-1. Web-based EV Charging Application — Software Engineering / RPL course.
-2. Machine Learning and Code Smell Analysis — Capstone project.
-3. PizzaBlazzing — Mobile Programming project.
-4. Bakery Website — UI/UX or web design project.
-5. Academic Research Writing — A simulated thesis assignment examining generative AI competencies in software developer recruitment.
+Do not invent findings, business impact, model accuracy, or decision outcomes.
 
-Each project should use a consistent content structure:
+#### Project C: Data Mining Coursework Exercise
 
-- Project title.
-- Project category.
-- Context or problem.
-- Objective.
-- Personal contribution.
-- Technical stack or methods.
-- Challenges and decisions.
-- Outcome or current status.
-- Repository or live demo, when available.
+**Category:** Data Analytics / Learning Exercise  
+**Context:** Coursework using a dataset whose topic still needs to be checked.  
+**Confirmed tool:** Microsoft Excel was used for the Data Mining work.  
+**Confirmed learning topics:** Decision Tree, Naive Bayes, and K-Nearest Neighbors (KNN).  
+**Confirmed scope:** Learning about or implementing algorithms as an exercise.
 
-Project descriptions must distinguish individual contributions from team achievements.
+This should initially appear as a coursework or learning exercise, not as a completed predictive system or a validated machine-learning project. Do not claim algorithm comparison, model evaluation, prediction accuracy, or successful deployment unless verified.
 
-Do not invent features, results, performance metrics, datasets, or technical methods. If a detail is unknown, mark it for confirmation before publication.
+**Still to confirm before publication:**
+- Dataset topic and source.
+- Prediction target or problem being explored.
+- Which algorithms were actually implemented, rather than only studied.
+- Whether Excel was used for all steps or alongside another tool.
+- Evaluation method and results, if any.
+- Whether the assignment permits public sharing.
 
-The simulated thesis assignment must be clearly identified as academic coursework, not a completed undergraduate thesis.
+If the topic and concrete output cannot be verified, omit the project from the featured-project section for the first release. The skills may still be mentioned as coursework exposure.
 
-Data Analytics should be represented through actual relevant projects and demonstrated methods. Do not add artificial dashboards or charts simply because it is the owner's academic concentration.
+### 4.3 Leadership & Organization
 
-### 5.4 Experience and Leadership
+**Purpose:** Demonstrate responsibility, coordination, event execution, communication, and learning through real organizational work.
 
-Purpose: Show the owner's ability to coordinate people, manage responsibilities, and learn through experience.
+#### OKAP 2026 — Project Leadership
 
-Potential experiences:
+- OKAP means Orientasi Kehidupan Akademik Program Studi Sistem Informasi and is a required orientation for new students in the program.
+- The owner was appointed chair/project lead on 19 June 2026.
+- The committee was assembled by 11 July 2026.
+- The event took place on 20 August 2026.
+- More than 40 new students attended.
+- This was the owner's first experience leading a project.
+- Preparation involved a limited timeline, remote coordination with committee members in different locations, timeline planning, delegation, and coordination with BPM regarding faculty-level orientation.
+- The owner focused on defining the event's purpose as a short introduction and guide to the Information Systems program, coordinating the team, and conducting a final briefing before the event.
 
-**OKAP 2026 — Leading Through Learning**
+The narrative should focus on goal-setting, responsibility, coordination, and learning by doing. Attendance is context only; it must not be described as voluntary recruitment or proof of attracting attendees.
 
-- Role: Project Leader.
-- Appointment date: 19 June 2026.
-- Committee assembled by: 11 July 2026.
-- Event date: 20 August 2026.
-- Context: First experience leading a project, with limited preparation time and remote coordination.
-- Responsibilities: Defining the event objective, creating a timeline, delegating responsibilities, coordinating the team and faculty-level stakeholders, and conducting a final briefing.
-- Outcome: The event ran smoothly, with more than 40 freshmen attending.
-- Important context: Attendance was mandatory. Attendance numbers must not be presented as evidence of voluntary recruitment or audience acquisition.
+#### MASASI 2026 — Program Coordination
 
-**MASASI 2026 — Coordinating a Recruitment Program**
-
-- Role: Person in charge of the program.
-- Registration: 20–27 September 2026.
-- Interviews began: 2 October 2026.
+- MASASI means Magang Bareng HMSI.
+- The owner was the person in charge of the program.
+- Registration was open from 20 to 27 September 2026.
 - Six applicants registered for the limited internship capacity.
-- All six applicants were accepted and assigned according to the distribution of their preferred divisions.
-- Responsibilities: Communicating the program to freshmen, managing registration, coordinating interviews, communicating announcements, and maintaining alignment with the HMSI Chair.
-- Main challenge: Managing program responsibilities alongside several academic and technical projects.
+- Interviews began on 2 October 2026.
+- All six applicants were accepted and placed according to the distribution of their preferred divisions.
+- Responsibilities included sharing program information, managing the registration form, coordinating interviews, communicating announcements, and maintaining alignment with the HMSI Chair.
+- The program ran alongside the owner's academic responsibilities.
 
-Other experiences requiring further factual confirmation:
+Do not describe MASASI as a competitive selection process or imply that applicants were rejected.
 
-- HMSI Social Student Affairs.
-- Student Committee overseeing organizational programs.
-- MC for Information Systems Creative Day (ISCD).
-- UMIC international competition at Universitas Surabaya (Ubaya).
+#### ISCD — Event Division and Master of Ceremonies
 
-Do not publish unconfirmed roles, dates, official event names, achievements, or results. Use placeholders until the information has been verified.
+**Context:** Information Systems Creative Day, an event associated with the Information Systems program anniversary.
 
-### 5.5 Skills and Tools
+**Confirmed contributions:**
+- Participated in the event division.
+- Contributed to planning the overall event, including the rundown.
+- Served as MC.
+- Coordinated and synchronized delivery with the MC partner.
+- Prepared cue cards and their content.
+- Used the role to practice public speaking.
 
-Present skills in meaningful groups instead of an inflated list of technologies.
+The write-up should show that the contribution included event planning as well as stage delivery. Do not invent event dates, audience size, attendance figures, or outcomes.
 
-**Programming and Development**
-- C#.
+**Still to confirm:** Event date/year, exact official event title, and any event materials or photographs that can be shared.
+
+#### Sosial Mahasiswa, HMSI — Organizational Membership
+
+Sosial Mahasiswa is the HMSI division in which the owner participates. The Student Committee responsibility falls under this organizational context.
+
+Do not present Sosial Mahasiswa and Student Committee as unrelated standalone positions without explaining their relationship.
+
+#### Student Committee — Oversight Responsibility
+
+The owner has responsibility for Student Committee within Sosial Mahasiswa. The exact scope of duties, activities, and examples of contributions still needs to be documented.
+
+**Still to confirm before writing a detailed case study:**
+- What the Student Committee monitors or evaluates in practice.
+- Specific work programs or events handled.
+- Concrete actions taken by the owner.
+- Examples of issues identified, coordination performed, or recommendations made.
+- Any results that can be stated accurately.
+
+Until then, show this as a role with a brief, factual description or leave it in the experience list without claiming unverified outcomes.
+
+### 4.4 Curiosity Archive
+
+**Purpose:** Express the owner's exploratory nature and intellectual interests.
+
+This section is optional for the first release. It may contain short, independently readable notes on:
+- Programming fundamentals and AI-assisted development.
+- Information systems and business processes.
+- Technology, human behavior, and ethical reasoning.
+- Philosophy and critical thinking.
+
+Each published entry should distinguish the initial question, what was learned, relevant counterarguments, and the author's current conclusion. Do not populate the archive with placeholder articles presented as published work. Two or three thoughtful entries are preferable to a large collection of empty categories.
+
+### 4.5 About
+
+**Purpose:** Explain the person behind the projects.
+
+Content:
+- Academic background in Information Systems at Universitas Kristen Duta Wacana (UKDW), Yogyakarta.
+- Concentration in Data Analytics.
+- Interests in data analysis, software development, information systems, and philosophy.
+- Personal approach to problem-solving: curiosity, structured thinking, and learning through practice.
+- Organizational experience and collaborative work.
+
+Philosophy should be presented as an intellectual interest, not as a professional qualification. Avoid exaggerated claims such as “expert,” “visionary,” or “industry-leading.”
+
+### 4.6 Toolkit / Technical Skills
+
+Display skills by category without arbitrary percentages or proficiency progress bars. Distinguish confirmed hands-on use from coursework exposure.
+
+**Programming & Backend Development**
 - PHP.
 - Laravel.
-- Web application development.
+- C#.
+
+**Data Analytics**
+- Python.
+- Pandas.
+- SciPy.
+- Matplotlib.
+- Microsoft Excel.
+
+**Data Mining / Predictive Modeling Coursework**
+- Decision Tree.
+- Naive Bayes.
+- K-Nearest Neighbors (KNN).
+
+These algorithm names should be presented as learning or coursework exposure until the dataset, implementation details, and evaluation work are verified.
 
 **Databases**
 - MySQL.
-- Oracle RDBMS.
+- Oracle Database.
 
 **Development Tools**
 - Git.
 - GitHub.
-- Visual Studio.
 - Visual Studio Code.
-- Antigravity.
+- Visual Studio.
+- Google Antigravity.
 
-**Design and Product Tools**
+**Design**
 - Figma.
 
-**Areas of Exploration**
-- Data Analytics.
-- Artificial Intelligence and Machine Learning.
-- UI/UX and digital product development.
+**Project context, not automatically an individual skill claim**
+- Vue.js is used by the EV ChargeHub frontend. Do not list Vue.js as a confirmed personal skill until the owner's own hands-on experience with it is confirmed.
 
-Only display technologies and skills that the owner has actually used or studied. Do not assign proficiency ratings without evidence.
+Only include technologies the owner can reasonably explain or demonstrate. If confidence or experience level is unclear, use neutral labels such as “Used in coursework” rather than proficiency ratings.
 
-Tools, interests, and demonstrated competencies must be clearly distinguished.
+### 4.7 Contact
 
-### 5.6 Intellectual Curiosity
+Provide:
+- Email: nathanielchristian1109@gmail.com
+- GitHub: https://github.com/Natvelniel
+- LinkedIn: https://www.linkedin.com/in/nathaniel-christian-susanto
+- Downloadable CV, only after an actual file is supplied.
 
-Purpose: Give the portfolio a personal dimension beyond conventional technical projects.
-
-Potential themes:
-
-- Philosophy and critical thinking.
-- How technology affects people and organizations.
-- Systems thinking and problem-solving.
-- Questions about artificial intelligence and the future of software development.
-- Reflections on learning, leadership, and building digital products.
-
-This section may take the form of short essays, notes, or selected reflections. It should not become a blog unless enough meaningful content exists to support one.
-
-### 5.7 Contact Section
-
-Purpose: Provide a clear way to connect with the owner.
-
-Potential links:
-
-- Email.
-- GitHub.
-- LinkedIn.
-- Other professional profiles, if available.
-
-Use verified profile URLs and email addresses. Do not fabricate contact details.
+All external links must be functional. Do not expose private information.
 
 ---
 
-## 6. Content Integrity Requirements
+## 5. Functional Requirements
 
-Accuracy is more important than making the portfolio appear impressive.
+### FR-01: Navigation
+- Navigation links scroll to their corresponding sections.
+- The active section may be indicated subtly.
+- Mobile navigation remains usable on narrow screens.
+- Navigation must not obscure section headings.
 
-Mandatory rules:
+### FR-02: Project Exploration
+- Visitors can browse selected projects.
+- Each project has a clear summary, role, technology list, and status.
+- In-progress work is clearly labeled.
+- Repository and demo links appear only when valid and approved for public sharing.
+- Project data is maintainable without rewriting the entire page.
 
-1. Never fabricate experience, projects, results, certifications, metrics, or responsibilities.
-2. Do not describe academic interests as professional expertise.
-3. Do not claim that a project achieved a result unless the result can be verified.
-4. Clearly distinguish individual work from group work.
-5. Do not present mandatory attendance as voluntary engagement.
-6. Do not present MASASI as a competitive selection process in which applicants were rejected.
-7. Do not publish private applicant information, personal contact details, internal organizational documents, or confidential information.
-8. Keep unconfirmed details marked as `[NEEDS CONFIRMATION]` in development content.
-9. Remove placeholders before the website goes live.
-10. Use real project screenshots, photographs, and repository links when available and appropriate.
+### FR-03: Experience Details
+- Visitors can distinguish organizational roles and project responsibilities.
+- Featured experiences may open a dedicated detail page or expandable case study.
+- Case studies communicate context, actual actions, and verified outcomes.
+- No metrics or results may be invented to make an experience look more impressive.
 
----
+### FR-04: Curiosity Archive
+- Visitors can browse published notes if the archive is included in the first release.
+- Each note has a title, category, date, and readable content.
+- Static content is sufficient for the initial version.
 
-## 7. User Experience Requirements
+### FR-05: Contact Links
+- Email uses a valid email link.
+- GitHub and LinkedIn link to the correct profiles.
+- CV download is enabled only after a real file is supplied.
 
-### Navigation
+### FR-06: Responsive Layout
+- The website works on desktop, tablet, and mobile.
+- Navigation, typography, media, and project layouts adapt to screen size.
+- No horizontal overflow is permitted at common viewport widths.
 
-- Provide clear navigation between sections.
-- Use anchor links for the single-page layout.
-- Ensure navigation works on desktop and mobile.
-- Highlight or otherwise clarify the current navigation state only if it improves usability.
-
-### Responsive Design
-
-The website must work on:
-
-- Mobile phones.
-- Tablets.
-- Desktop screens.
-- Wide desktop displays.
-
-Layouts must adapt naturally rather than simply shrinking the desktop version.
-
-### Accessibility
-
-- Use semantic HTML elements.
-- Maintain sufficient color contrast.
-- Provide visible keyboard focus indicators.
-- Support keyboard navigation.
-- Use descriptive link labels.
+### FR-07: Accessibility
+- Use semantic HTML.
+- Maintain readable text contrast.
 - Provide meaningful alternative text for informative images.
+- Ensure keyboard navigation and visible focus states.
 - Respect reduced-motion preferences.
-- Do not rely on color alone to communicate information.
-
-### Performance
-
-- Optimize images and use appropriate formats.
-- Avoid unnecessary dependencies.
-- Avoid heavy animation libraries unless justified.
-- Prevent layout shifts where practical.
-- Load nonessential assets efficiently.
-- Keep the initial page load lightweight.
-
-### Motion
-
-Use subtle transitions for navigation, hover states, and section reveals where they improve the experience.
-
-Animation must never obstruct reading, delay access to content, or become the primary attraction of the website.
 
 ---
 
-## 8. Technical Direction
+## 6. Visual Design Requirements
 
-The suggested stack is:
+### 6.1 Art Direction
 
+**Style:** Editorial minimalism with a subtle developer aesthetic.
+
+The design should combine the clarity of an editorial publication with the precision of a technical portfolio. It should feel personal, restrained, and deliberately composed.
+
+### 6.2 Color Palette
+- Charcoal: `#171918`
+- Warm ivory: `#F2EFE7`
+- Burnt orange: `#D97745`
+- Muted gray for secondary text and dividers.
+
+Charcoal and ivory establish the main contrast. Burnt orange is reserved for selected highlights, links, and important actions.
+
+Avoid excessive gradients, neon colors, and glassmorphism.
+
+### 6.3 Typography
+- Primary font: Manrope or Inter.
+- Monospaced accent: JetBrains Mono.
+
+Use expressive but restrained headings, readable body text, and monospaced labels for metadata such as project categories, dates, and technologies.
+
+### 6.4 Layout
+- Strong typographic hierarchy.
+- Generous but purposeful whitespace.
+- Consistent grid and spacing system.
+- Asymmetric editorial compositions where appropriate.
+- Use project cards only where they improve scanning and comparison.
+- Separate technical work, organizational experience, and personal exploration clearly.
+
+### 6.5 Motion
+
+Motion should clarify interaction rather than decorate the page.
+
+Allowed:
+- Subtle section reveal.
+- Small hover transitions.
+- Smooth scrolling where appropriate.
+- Minimal image or typography transitions.
+
+Avoid:
+- Constantly moving elements.
+- Excessive parallax.
+- Long intro animations.
+- Fake terminal windows.
+- Animation that delays access to content.
+
+---
+
+## 7. Technical Requirements
+
+### Recommended Stack
 - Next.js.
 - TypeScript.
-- Tailwind CSS.
+- Tailwind CSS, only if appropriate after inspecting the existing workspace.
 - Git and GitHub.
-- Vercel for deployment, if suitable.
+- Vercel deployment.
 
-These are recommendations, not permission to overwrite an existing project.
+This is a recommendation, not an instruction to replace an existing working stack blindly.
 
-### Repository Audit
+### Architecture
+- Reusable components for navigation, project entries, experience entries, and article previews.
+- Content stored in typed TypeScript objects or structured local data.
+- Shared design tokens for colors, typography, spacing, and borders.
+- Separate routes for detailed case studies only if justified.
 
-Before making changes, the implementation agent must:
+### Backend
+No backend or database is required for the portfolio's first version.
 
-1. Inspect the existing repository and folder structure.
-2. Read existing `package.json`, configuration files, and application entry points where applicable.
-3. Identify the framework, installed dependencies, and current implementation.
-4. Locate the five personal photographs already supplied in the project root, if they are still present.
-5. Inspect existing assets and reusable components.
-6. Identify the actual installation and usage instructions for the available UI UX Max tool.
-7. Report relevant findings before making significant architectural changes.
+A contact form must not be presented as functional unless an actual submission service has been configured. A direct email link is sufficient for the initial release.
 
-If a working project already exists, preserve its architecture unless there is a clear technical reason to change it.
-
-Do not replace configuration files, dependencies, or existing work unnecessarily.
-
-### UI UX Max
-
-Use UI UX Max as a design reference and implementation aid according to its actual installed documentation and capabilities.
-
-- Inspect the available instructions before invoking its features.
-- Use it to support design decisions, layout consistency, and UI quality.
-- Do not assume a particular command, configuration, or integration exists without verification.
-- Review its recommendations critically rather than accepting every generated output.
-
-### Code Quality
-
-- Use reusable components when they reduce duplication.
-- Keep content separate from layout when practical.
-- Use descriptive names and consistent formatting.
-- Avoid unnecessary abstraction.
-- Avoid placeholder links that appear functional but lead nowhere.
-- Handle missing images and optional content gracefully.
-- Do not add a backend or database unless a real requirement needs one.
+### Deployment
+- Source code stored in GitHub.
+- Deployment through Vercel.
+- Production build must pass before release.
+- Environment variables must never contain public credentials or be committed to the repository.
 
 ---
 
-## 9. Implementation Plan
+## 8. UI UX Max and Antigravity Workflow
 
-Work in phases. Do not attempt to build the entire site before validating its direction.
+UI UX Max is a design-support tool, while Antigravity is the primary development environment. Verify the actual UI UX Max installation and documentation before assuming specific commands or capabilities.
 
-### Phase 1: Audit and Content Review
+Workflow:
+1. Finalize this PRD and verify the initial content.
+2. Inspect the current project structure, framework, package manager, dependencies, existing instructions, and assets.
+3. Read `PRD.md` and `AGENTS.md` if present.
+4. Inspect UI UX Max documentation and identify relevant design guidance.
+5. Establish design tokens and a consistent visual system.
+6. Propose the implementation plan before coding.
+7. Implement in small, verifiable stages after approval.
+8. Review desktop and mobile layouts.
+9. Test links, navigation, accessibility, and production build.
+10. Commit verified work to GitHub and deploy to Vercel.
 
-- Inspect the repository and development environment.
-- Identify existing assets and technical constraints.
-- Review the proposed content and flag missing facts.
-- Determine the most suitable implementation approach.
-
-**Deliverable:** Repository assessment and a confirmed implementation plan.
-
-### Phase 2: Design Foundation
-
-- Establish typography, colors, spacing, layout rules, and interaction patterns.
-- Define the main page structure.
-- Decide how projects and organizational experiences should be visually differentiated.
-- Ensure the design avoids generic AI-generated patterns.
-
-**Deliverable:** A coherent design system and page structure.
-
-### Phase 3: Core Implementation
-
-- Build the hero and navigation.
-- Build the about section.
-- Implement selected projects and experiences.
-- Add skills, intellectual curiosity, and contact sections as appropriate.
-- Implement responsive behavior.
-
-**Deliverable:** A functional portfolio website.
-
-### Phase 4: Content and Visual Refinement
-
-- Replace temporary content with verified information.
-- Integrate real images and project assets.
-- Refine typography, spacing, hierarchy, and responsive layouts.
-- Remove unnecessary decorative elements.
-
-**Deliverable:** A visually consistent, content-accurate website.
-
-### Phase 5: Quality Assurance
-
-- Test all navigation and links.
-- Test responsive layouts.
-- Check browser console and build errors.
-- Check keyboard navigation and accessibility basics.
-- Verify image loading and performance.
-- Remove placeholders and unverified claims.
-- Confirm the production build succeeds.
-
-**Deliverable:** A deployment-ready website.
-
-### Phase 6: Deployment
-
-- Prepare the repository for version control.
-- Configure deployment using an appropriate platform, such as Vercel.
-- Verify production behavior.
-- Document any remaining manual configuration.
-
-**Deliverable:** A deployed website with verified functionality.
+Do not replace the existing project structure blindly or introduce dependencies without a reason.
 
 ---
 
-## 10. Acceptance Criteria
+## 9. Non-Functional Requirements
 
-The project is considered complete when:
+### Performance
+- Avoid unnecessary libraries and oversized assets.
+- Optimize images.
+- Minimize unnecessary client-side JavaScript.
+- Prioritize fast access to the main content.
 
-- [ ] The website clearly communicates the owner's identity and academic concentration in Data Analytics.
-- [ ] The design follows the defined visual direction and avoids generic AI-generated aesthetics.
-- [ ] Projects and experiences use accurate, verified information.
-- [ ] Individual contributions are distinguished from team achievements.
-- [ ] Navigation and all intended interactions work.
-- [ ] The website is usable on mobile, tablet, and desktop.
-- [ ] Basic accessibility requirements are met.
-- [ ] Images and assets load correctly.
-- [ ] There are no obvious console errors or broken internal links.
-- [ ] The production build succeeds.
-- [ ] No placeholder content or unverified claims remain in the public version.
-- [ ] The site can be maintained without unnecessary technical complexity.
+### Maintainability
+- Use reusable components.
+- Keep content separate from layout where practical.
+- Use clear naming conventions.
+- Avoid a monolithic page component.
+
+### Reliability
+- No broken navigation or external links.
+- No browser console errors in the primary user journey.
+- Production build must complete successfully.
+
+### Privacy
+- Publish only intended contact information.
+- Obtain permission before publishing photos of other people or internal organizational material.
+- Do not expose credentials, private documents, or personal data.
+- Confirm that coursework datasets and project screenshots are permitted for public display.
 
 ---
 
-## 11. Instructions for the Implementation Agent
+## 10. Success Criteria
 
-Treat this PRD as the primary product specification.
+Version 1.0 is complete when:
+1. A visitor can understand the owner's identity and focus within the first few seconds.
+2. Featured technical projects communicate real work, the owner's role, and project status.
+3. EV ChargeHub is clearly labeled as in development and does not imply that all features are complete.
+4. Data analytics and data-mining content distinguish verified analysis from learning exercises.
+5. OKAP, MASASI, and ISCD accurately represent their responsibilities and contributions.
+6. The website communicates Data Analytics, Software Development, and Leadership & Organization as coherent parts of one identity.
+7. All primary navigation and contact links work.
+8. The layout remains usable on desktop and mobile.
+9. The production build succeeds and the deployed website is accessible.
+10. No fabricated metrics, project results, testimonials, or skill ratings are presented.
 
-Follow these rules throughout development:
+---
 
-1. Inspect before implementing.
-2. Understand
+## 11. Out of Scope for Version 1.0
+
+- User authentication for the portfolio.
+- Admin dashboard.
+- Database-backed content management.
+- Blog CMS.
+- Backend contact form unless a clear need and actual service are established.
+- Complex 3D effects.
+- AI chatbot.
+- Analytics infrastructure beyond basic deployment diagnostics.
+
+These features may be considered later if a clear need emerges.
+
+---
+
+## 12. Open Content Items / Verification Checklist
+
+The following information must be verified or supplied before the relevant content is published.
+
+### Data Analytics
+- [ ] Business-analysis dataset and business question.
+- [ ] Specific analysis performed with Python, SciPy, Pandas, and Matplotlib.
+- [ ] Findings, visualizations, and conclusions that can be stated accurately.
+- [ ] Data Mining coursework dataset topic.
+- [ ] Which algorithms were implemented versus only studied.
+- [ ] Tools used in the Data Mining exercise beyond the confirmed use of Excel, if any.
+- [ ] Evaluation method/results, if any.
+- [ ] Permission to publish the dataset, outputs, or screenshots.
+
+### EV ChargeHub
+- [ ] Exact backend features already implemented versus planned.
+- [ ] Database engine and specific database/query responsibilities.
+- [ ] API design and frontend-backend integration details, if applicable.
+- [ ] Team roles and exact individual contribution.
+- [ ] Public repository URL, screenshots, or demo if available.
+- [ ] Confirmation of what may be shared publicly.
+
+### Leadership & Organization
+- [ ] Exact Student Committee duties and examples of contributions.
+- [ ] Specific activities under Sosial Mahasiswa.
+- [ ] ISCD event date/year and official event title.
+- [ ] Photos or event materials that can be shared publicly.
+- [ ] CV file, if available.
+
+### Site Content
+- [ ] Professional portrait or preferred personal visual.
+- [ ] Initial Curiosity Archive entries, if the section launches in version 1.0.
+- [ ] Confirm all external links before deployment.
+
+Until details are verified, use clearly marked placeholders during development or omit the relevant claim. Do not fill gaps with plausible-sounding assumptions.
+
+---
+
+## 13. Excluded Portfolio Content
+
+The following items are explicitly excluded from the current portfolio scope:
+- Machine-learning/code-smell capstone project.
+- PizzaBlazzing mobile programming project.
+- Bahasa Indonesia simulated thesis/research assignment about generative AI recruitment skills.
+
+Do not add these projects to the homepage, featured work, skills evidence, or future-content suggestions in this PRD unless the owner explicitly changes this decision.
+
+---
+
+## 14. Final Product Direction
+
+The portfolio should not attempt to portray its owner as someone who already knows everything. It should demonstrate someone who analyzes, builds, contributes, asks meaningful questions, and learns through experience.
+
+**Build things. Question assumptions. Keep exploring.**
+
+That is the central identity the website must communicate.
