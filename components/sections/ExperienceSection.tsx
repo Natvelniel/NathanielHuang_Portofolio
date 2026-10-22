@@ -8,11 +8,16 @@ export default function ExperienceSection() {
       id="leadership"
       index="02"
       title="Leadership & Organization"
-      intro="Responsibilities held in student organizations and events."
+      intro="Concrete responsibilities in student organizations, event planning, and program coordination."
     >
-      <ul>
-        {experiences.map((experience) => (
-          <ExperienceEntry key={experience.id} experience={experience} />
+      <ul className="border-b border-rule">
+        {experiences.map((experience, idx) => (
+          <ExperienceEntry
+            key={experience.id}
+            experience={experience}
+            index={`0${idx + 1}`}
+            defaultOpen={idx === 0}
+          />
         ))}
       </ul>
     </SectionShell>

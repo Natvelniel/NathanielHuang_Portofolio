@@ -3,98 +3,108 @@
 @tailwind utilities;
 
 :root {
-  --ivory: #F2EFE7;
-  --charcoal: #171918;
-  --muted: #5F6662;
-  --rule: #BDB7A8;
+  --bg-base: #F2EFE7;
+  --bg-surface: #EAE6DC;
+  --text-primary: #171918;
+  --text-muted: #5F6662;
+  --border-subtle: #D5D0C5;
+  --border-strong: #A8A398;
   --accent: #D97745;
-  /* Derived from the accent for text on ivory (4.77:1). */
-  --accent-ink: #A8501F;
-  --header-h: 4rem;
+  --header-h: 4.25rem;
+  color-scheme: light;
+}
+
+.dark {
+  --bg-base: #171918;
+  --bg-surface: #1F2220;
+  --text-primary: #F2EFE7;
+  --text-muted: #9CA39F;
+  --border-subtle: #2B2F2D;
+  --border-strong: #464C49;
+  --accent: #D97745;
+  color-scheme: dark;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Keeps anchored section headings clear of the sticky header (FR-01). */
     scroll-padding-top: calc(var(--header-h) + 1.5rem);
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--ivory);
-    color: var(--charcoal);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
     font-family: var(--font-sans), system-ui, sans-serif;
     font-size: 1.0625rem;
-    line-height: 1.65;
+    line-height: 1.68;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition:
+      background-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 280ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   ::selection {
-    background-color: var(--accent);
-    color: var(--charcoal);
+    background-color: #D97745;
+    color: #171918;
   }
 
-  /* Charcoal ring: 15.38:1 on ivory, well above the 3:1 non-text minimum. */
   :focus-visible {
-    outline: 2px solid var(--charcoal);
+    outline: 2px solid var(--text-primary);
     outline-offset: 3px;
-  }
-
-  .on-dark :focus-visible {
-    outline-color: var(--ivory);
-  }
-
-  summary {
-    cursor: pointer;
   }
 }
 
 @layer components {
-  /* Metadata label: monospaced, sentence case, muted. */
-  .label {
+  /* Technical metadata label: JetBrains Mono, restrained size, muted gray */
+  .meta-label {
     font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 0.8125rem;
-    line-height: 1.4;
-    color: var(--muted);
+    font-size: 0.78125rem;
+    line-height: 1.45;
+    letter-spacing: 0.01em;
+    color: var(--text-muted);
   }
 
-  .on-dark .label {
-    color: #A3ABA6;
-  }
-
-  /* Text link on ivory: ink-colored with a visible underline. */
-  .text-link {
-    color: var(--accent-ink);
+  /* Editorial text link: high-contrast primary text with a burnt-orange underline */
+  .editorial-link {
+    color: var(--text-primary);
     text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2em;
-    transition: text-decoration-thickness 150ms ease;
+    text-decoration-color: #D97745;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.28em;
+    transition:
+      color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      text-decoration-thickness 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      text-underline-offset 200ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .text-link:hover {
-    text-decoration-thickness: 2px;
+  .editorial-link:hover {
+    text-decoration-thickness: 2.5px;
+    text-underline-offset: 0.36em;
   }
 
-  .on-dark .text-link {
-    color: var(--accent);
+  .dark .editorial-link:hover {
+    color: #D97745;
   }
 }
 
-/* Subtle section reveal. Content is visible by default (no JS, no motion). */
+/* Smooth section reveal with fallback visibility */
 [data-reveal] {
-  transition: opacity 400ms ease, transform 400ms ease;
+  transition:
+    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-reveal="pending"] {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(12px);
 }
 
 [data-reveal="done"] {
   opacity: 1;
-  transform: none;
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
