@@ -5,43 +5,23 @@ export default function SkillsSection() {
   return (
     <SectionShell
       id="toolkit"
-      index="04"
-      title="Toolkit"
-      intro="Categorized by practical domain. Confirmed hands-on work is distinguished from coursework exposure."
+      eyebrow="Toolkit"
+      title="Tools I have used, grouped by what they are for."
+      intro="No proficiency ratings. Algorithms marked as coursework were learning exercises, not validated models."
     >
-      <div className="grid gap-px border border-rule bg-rule sm:grid-cols-2">
-        {skillGroups.map((group, idx) => (
-          <div
-            key={group.category}
-            className="flex flex-col justify-between bg-base p-6 transition-colors duration-200 ease-editorial hover:bg-surface sm:p-7"
-          >
-            <div>
-              <div className="flex items-baseline justify-between gap-2">
-                <h3 className="text-base font-semibold tracking-[-0.01em] text-primary">
-                  {group.category}
-                </h3>
-                <span className="font-mono text-xs text-muted">
-                  0{idx + 1}
-                </span>
-              </div>
-
-              {group.note ? (
-                <p className="mt-1 text-xs text-muted">{group.note}</p>
-              ) : null}
-            </div>
-
-            <ul className="mt-5 flex flex-wrap gap-2">
+      <div className="grid gap-px overflow-hidden rounded-2xl border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+        {skillGroups.map((group) => (
+          <div key={group.category} className="flex flex-col bg-elevated p-6 sm:p-7">
+            <h3 className="text-base font-semibold tracking-[-0.01em] text-primary">{group.category}</h3>
+            {group.note ? <p className="mt-1 text-sm text-muted">{group.note}</p> : null}
+            <ul className="mt-5 flex flex-wrap gap-1.5">
               {group.items.map((item) => (
                 <li
                   key={item.name}
-                  className="inline-flex items-baseline gap-1.5 border border-rule bg-surface px-3 py-1.5 font-mono text-xs text-primary"
+                  className="inline-flex items-baseline gap-1.5 rounded-md bg-primary/[0.06] px-2.5 py-1 font-mono text-[12.5px] text-primary"
                 >
-                  <span className="font-medium">{item.name}</span>
-                  {item.basis ? (
-                    <span className="text-[11px] text-muted">
-                      ({item.basis.toLowerCase()})
-                    </span>
-                  ) : null}
+                  {item.name}
+                  {item.basis ? <span className="text-muted">· {item.basis.toLowerCase()}</span> : null}
                 </li>
               ))}
             </ul>

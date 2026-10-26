@@ -8,18 +8,14 @@ export default function ProjectsSection() {
   return (
     <SectionShell
       id="works"
-      index="01"
-      title="Selected Works"
-      intro="Real technical contributions with explicit scope and current development status."
+      eyebrow="Selected works"
+      title="Real work, with scope and status stated plainly."
+      intro="What I contributed, the tools I used for my part, and where each project stands today."
     >
-      <div className="space-y-8">
-        <ProjectEntry project={lead} index="01" lead />
-        {rest.map((project, idx) => (
-          <ProjectEntry
-            key={project.id}
-            project={project}
-            index={`0${idx + 2}`}
-          />
+      <div className="space-y-5">
+        <ProjectEntry project={lead} lead />
+        {rest.map((project) => (
+          <ProjectEntry key={project.id} project={project} />
         ))}
       </div>
     </SectionShell>

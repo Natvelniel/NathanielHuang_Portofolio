@@ -4,58 +4,42 @@ import SectionShell from "@/components/ui/SectionShell";
 export default function AboutSection() {
   const { about, institution, concentration, closingLine } = personalInfo;
 
+  const facts = [
+    { term: "Studying", value: "Information Systems" },
+    { term: "Institution", value: institution },
+    { term: "Concentration", value: concentration },
+    { term: "Interests", value: about.interests.join(", ") },
+  ];
+
   return (
-    <SectionShell
-      id="about"
-      index="03"
-      title="About"
-      intro="Academic background, problem-solving approach, and areas of inquiry."
-    >
-      <div className="max-w-measure space-y-5">
-        <p className="text-xl font-medium leading-relaxed tracking-[-0.01em] text-primary sm:text-2xl">
-          {about.academic}
-        </p>
-        <p className="text-base leading-relaxed text-primary">
-          {about.approach}
-        </p>
-        <p className="text-base leading-relaxed text-muted">
-          {about.philosophyNote} {about.collaboration}
-        </p>
+    <SectionShell id="about" eyebrow="About" title="The person behind the projects.">
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="space-y-5 lg:col-span-7">
+          <p className="text-xl leading-relaxed tracking-[-0.01em] text-primary sm:text-2xl sm:leading-relaxed">
+            {about.academic}
+          </p>
+          <p className="max-w-measure text-base leading-relaxed text-primary">{about.approach}</p>
+          <p className="max-w-measure text-base leading-relaxed text-muted">
+            {about.philosophyNote} {about.collaboration}
+          </p>
+        </div>
+
+        <dl className="divide-y divide-rule self-start rounded-2xl border border-rule bg-elevated px-6 lg:col-span-5">
+          {facts.map((fact) => (
+            <div key={fact.term} className="grid grid-cols-[7.5rem_1fr] gap-4 py-4">
+              <dt className="meta pt-0.5">{fact.term}</dt>
+              <dd className="text-[15px] font-medium leading-snug text-primary">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
 
-      {/* Structured Academic & Interest Ledger */}
-      <dl className="mt-10 grid gap-px border border-rule bg-rule sm:grid-cols-3">
-        <div className="bg-surface p-5">
-          <dt className="meta-label">Institution</dt>
-          <dd className="mt-1.5 text-sm font-medium leading-snug text-primary">
-            {institution}
-          </dd>
-        </div>
-
-        <div className="bg-surface p-5">
-          <dt className="meta-label">Concentration</dt>
-          <dd className="mt-1.5 text-sm font-medium text-primary">
-            {concentration}
-          </dd>
-        </div>
-
-        <div className="bg-surface p-5">
-          <dt className="meta-label">Interests</dt>
-          <dd className="mt-1.5 text-sm font-medium leading-snug text-primary">
-            {about.interests.join(" · ")}
-          </dd>
-        </div>
-      </dl>
-
-      {/* Closing Creed (PRD §14) */}
-      <blockquote className="mt-12 border-l-2 border-accent bg-surface p-6 sm:p-8">
-        <p className="meta-label uppercase tracking-[0.1em]">
-          Guiding Principle
-        </p>
-        <p className="mt-2 text-balance text-xl font-semibold leading-snug tracking-[-0.015em] text-primary sm:text-2xl">
-          &ldquo;{closingLine}&rdquo;
-        </p>
-      </blockquote>
+      <figure className="mt-16 border-t border-rule pt-10 md:mt-20">
+        <blockquote className="text-balance text-[clamp(1.75rem,1.2rem+2vw,2.75rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-primary">
+          {closingLine}
+        </blockquote>
+        <figcaption className="meta mt-4">The direction this portfolio follows</figcaption>
+      </figure>
     </SectionShell>
   );
 }

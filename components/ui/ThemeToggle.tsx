@@ -3,74 +3,66 @@
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setMounted(true);
     setIsDark(document.documentElement.classList.contains("dark"));
   }, []);
 
-  const toggleTheme = () => {
-    const nextDark = !isDark;
-    setIsDark(nextDark);
-    if (nextDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("cb-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("cb-theme", "light");
+  const toggle = () => {
+    const root = document.documentElement;
+    const next = !root.classList.contains("dark");
+
+    // Let colors glide during the switch only, so normal hovers stay snappy.
+    root.classList.add("theme-transition");
+    root.classList.toggle("dark", next);
+    window.setTimeout(() => root.classList.remove("theme-transition"), 320);
+
+    try {
+      localStorage.setItem("cb-theme", next ? "dark" : "light");
+    } catch {
+      // Storage can be unavailable (private mode); the switch still works for this visit.
     }
+    setIsDark(next);
   };
+
+  const label = isDark === null ? "Toggle color theme" : `Switch to ${isDark ? "light" : "dark"} mode`;
 
   return (
     <button
       type="button"
-      onClick={toggleTheme}
-      aria-label={
-        mounted
-          ? `Switch to ${isDark ? "light" : "dark"} mode`
-          : "Toggle color theme"
-      }
-      title={mounted ? `Switch to ${isDark ? "light" : "dark"} mode` : "Toggle theme"}
-      className="group inline-flex min-h-11 items-center gap-2 border border-rule bg-surface px-3.5 py-1.5 font-mono text-xs text-primary transition-colors duration-200 ease-editorial hover:border-accent"
+      onClick={toggle}
+      aria-label={label}
+      title={label}
+      className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary/70 transition-colors duration-200 ease-smooth hover:bg-primary/[0.06] hover:text-primary"
     >
-      <span className="relative flex h-3.5 w-3.5 items-center justify-center">
-        {/* Sun icon (shown in dark mode to switch to light) */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 16 16"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          className={`absolute h-3.5 w-3.5 transition-all duration-300 ease-editorial ${
-            mounted && isDark
-              ? "rotate-0 scale-100 opacity-100"
-              : "-rotate-45 scale-0 opacity-0"
-          }`}
-        >
-          <circle cx="8" cy="8" r="3" />
-          <path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M3.4 12.6l1.4-1.4M11.2 4.8l1.4-1.4" />
-        </svg>
-        {/* Moon icon (shown in light mode to switch to dark) */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 16 16"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          className={`absolute h-3.5 w-3.5 transition-all duration-300 ease-editorial ${
-            mounted && isDark
-              ? "rotate-45 scale-0 opacity-0"
-              : "rotate-0 scale-100 opacity-100"
-          }`}
-        >
-          <path d="M13.5 9.8A5.8 5.8 0 0 1 6.2 2.5a5.8 5.8 0 1 0 7.3 7.3Z" />
-        </svg>
-      </span>
-      <span className="hidden sm:inline">
-        {mounted ? (isDark ? "Light" : "Dark") : "Theme"}
-      </span>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        className={`absolute h-[18px] w-[18px] transition-all duration-300 ease-smooth ${
+          isDark ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-50 opacity-0"
+        }`}
+      >
+        <circle cx="10" cy="10" r="3.5" />
+        <path d="M10 2.5v1.5M10 16v1.5M2.5 10H4M16 10h1.5M4.7 4.7l1 1M14.3 14.3l1 1M4.7 15.3l1-1M14.3 5.7l1-1" />
+      </svg>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+        className={`absolute h-[18px] w-[18px] transition-all duration-300 ease-smooth ${
+          isDark ? "rotate-90 scale-50 opacity-0" : "rotate-0 scale-100 opacity-100"
+        }`}
+      >
+        <path d="M16.5 12.2A6.8 6.8 0 0 1 7.8 3.5a6.8 6.8 0 1 0 8.7 8.7Z" />
+      </svg>
     </button>
   );
 }

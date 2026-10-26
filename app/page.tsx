@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className="outline-none">
         <HeroSection />
         <ProjectsSection />
         <ExperienceSection />
@@ -19,17 +19,12 @@ export default function HomePage() {
         <SkillsSection />
         <ContactSection />
       </main>
-      <footer className="border-t border-rule bg-base transition-colors duration-250 ease-editorial">
-        <div className="mx-auto flex max-w-page flex-col items-start justify-between gap-4 px-5 py-10 sm:flex-row sm:items-center sm:px-8">
-          <div className="flex items-center gap-3">
-            <span className="inline-block h-2 w-2 bg-accent" aria-hidden="true" />
-            <p className="meta-label text-primary">
-              The Curious Builder — {personalInfo.name}
-            </p>
-          </div>
-          <p className="meta-label">
-            © {new Date().getFullYear()} · {personalInfo.tagline}
+      <footer className="border-t border-rule">
+        <div className="mx-auto flex max-w-page flex-col gap-2 px-5 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <p>
+            © {new Date().getFullYear()} {personalInfo.name}
           </p>
+          <p>{personalInfo.tagline}</p>
         </div>
       </footer>
     </>

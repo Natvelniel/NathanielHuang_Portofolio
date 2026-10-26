@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Curious Builder — Nathaniel Christian Susanto",
+  title: "The Curious Builder â€” Nathaniel Christian Susanto",
   description:
     "Nathaniel Christian Susanto is an Information Systems student at UKDW (Data Analytics concentration) working across data analytics, software development, and leadership & organization.",
   authors: [{ name: "Nathaniel Christian Susanto" }],
@@ -57,7 +57,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="min-h-screen bg-base text-primary selection:bg-accent selection:text-charcoal">
+      <body className="min-h-screen bg-canvas text-primary selection:bg-accent selection:text-charcoal">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-charcoal focus:px-4 focus:py-2.5 focus:font-mono focus:text-xs focus:text-ivory dark:focus:bg-ivory dark:focus:text-charcoal"

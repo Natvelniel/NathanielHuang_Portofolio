@@ -4,15 +4,28 @@ import { useEffect, useRef, useState } from "react";
 import { personalInfo } from "@/content/personal";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
-const items = personalInfo.navigation;
+const items = personalInfo.navigation.filter((item) => item.href !== "#contact");
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  // Transparent at the top, frosted once content scrolls underneath.
   useEffect(() => {
-    const sections = items
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      if (window.scrollY < 160) setActive("");
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Subtle current-section indicator.
+  useEffect(() => {
+    const sections = personalInfo.navigation
       .map((item) => document.getElementById(item.href.slice(1)))
       .filter((el): el is HTMLElement => el !== null);
 
@@ -22,21 +35,13 @@ export default function Navbar() {
           if (entry.isIntersecting) setActive(entry.target.id);
         }
       },
-      { rootMargin: "-25% 0px -60% 0px" },
+      { rootMargin: "-30% 0px -60% 0px" },
     );
     sections.forEach((el) => observer.observe(el));
-
-    const onScroll = () => {
-      if (window.scrollY < 160) setActive("");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => observer.disconnect();
   }, []);
 
+  // Escape closes the mobile menu and returns focus to its button.
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -49,57 +54,49 @@ export default function Navbar() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
+  const frosted = scrolled || open;
+
   return (
-    <header className="sticky top-0 z-40 border-b border-rule bg-base transition-colors duration-250 ease-editorial">
-      <div className="mx-auto flex h-[var(--header-h)] max-w-page items-center justify-between px-5 sm:px-8">
-        {/* Identity Mark */}
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ease-smooth ${
+        frosted
+          ? "border-rule bg-canvas/75 backdrop-blur-xl backdrop-saturate-150"
+          : "border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-[var(--header-h)] max-w-page items-center justify-between gap-4 px-5 sm:px-8">
         <a
           href="#top"
           onClick={() => setOpen(false)}
-          className="group inline-flex min-h-11 items-center gap-3"
+          className="group inline-flex min-h-11 items-center gap-2.5 rounded-lg"
         >
-          <span className="inline-flex h-7 w-7 items-center justify-center border border-rule bg-surface font-mono text-xs font-medium tracking-tight text-primary transition-colors duration-200 ease-editorial group-hover:border-accent group-hover:bg-accent group-hover:text-charcoal">
+          <span
+            aria-hidden="true"
+            className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary text-[13px] font-semibold text-canvas transition-colors duration-200 ease-smooth group-hover:bg-accent group-hover:text-charcoal"
+          >
             N
           </span>
-          <span className="flex flex-col">
-            <span className="text-sm font-semibold leading-none tracking-[-0.01em] text-primary">
-              The Curious Builder
-            </span>
-            <span className="mt-1 hidden font-mono text-[11px] leading-none text-muted lg:inline">
-              Nathaniel Christian Susanto
-            </span>
+          <span className="text-[15px] font-semibold tracking-[-0.01em] text-primary">
+            The Curious Builder
           </span>
         </a>
 
-        {/* Primary Desktop Navigation */}
         <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-1 lg:gap-2">
-            {items.map((item, idx) => {
-              const id = item.href.slice(1);
-              const isActive = active === id;
+          <ul className="flex items-center gap-1">
+            {items.map((item) => {
+              const isActive = active === item.href.slice(1);
               return (
                 <li key={item.href}>
                   <a
                     href={item.href}
                     aria-current={isActive ? "true" : undefined}
-                    className={`group relative inline-flex min-h-11 items-center gap-1.5 px-3 text-sm font-medium transition-colors duration-200 ease-editorial ${
+                    className={`relative inline-flex h-9 items-center rounded-lg px-3.5 text-sm font-medium transition-colors duration-200 ease-smooth ${
                       isActive
-                        ? "text-primary"
-                        : "text-muted hover:text-primary"
+                        ? "bg-primary/[0.07] text-primary"
+                        : "text-primary/65 hover:bg-primary/[0.05] hover:text-primary"
                     }`}
                   >
-                    <span className="font-mono text-[11px] text-muted transition-colors duration-200 dark:group-hover:text-accent">
-                      0{idx + 1}
-                    </span>
-                    <span>{item.label}</span>
-                    <span
-                      aria-hidden="true"
-                      className={`absolute bottom-0 left-3 right-3 h-[2px] bg-accent transition-transform duration-250 ease-editorial ${
-                        isActive
-                          ? "scale-x-100"
-                          : "origin-left scale-x-0 group-hover:scale-x-100"
-                      }`}
-                    />
+                    {item.label}
                   </a>
                 </li>
               );
@@ -107,57 +104,60 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Theme Switcher & Mobile Menu Control */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-1.5">
           <ThemeToggle />
-
+          <a
+            href="#contact"
+            className="hidden h-9 items-center rounded-lg bg-primary px-4 text-sm font-medium text-canvas transition-colors duration-200 ease-smooth hover:bg-accent hover:text-charcoal sm:inline-flex"
+          >
+            Get in touch
+          </a>
           <button
             ref={buttonRef}
             type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center border border-rule bg-surface px-3.5 font-mono text-xs text-primary transition-colors duration-200 ease-editorial hover:border-accent md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setOpen((value) => !value)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary transition-colors duration-200 hover:bg-primary/[0.06] md:hidden"
           >
-            {open ? "Close" : "Menu"}
+            <svg aria-hidden="true" viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <path
+                className={`origin-center transition-transform duration-300 ease-smooth ${open ? "translate-y-[3px] rotate-45" : ""}`}
+                d="M4 7h12"
+              />
+              <path
+                className={`origin-center transition-transform duration-300 ease-smooth ${open ? "-translate-y-[3px] -rotate-45" : ""}`}
+                d="M4 13h12"
+              />
+            </svg>
           </button>
         </div>
       </div>
 
-      {/* Smooth Animated Mobile Drawer */}
+      {/* Mobile menu: height animates via grid rows; links leave the tab order when closed. */}
       <div
         id="mobile-nav"
-        aria-hidden={!open}
-        className={`grid overflow-hidden bg-base transition-[grid-template-rows,border-color] duration-300 ease-editorial md:hidden ${
-          open ? "grid-rows-[1fr] border-t border-rule" : "grid-rows-[0fr]"
+        className={`grid transition-[grid-template-rows] duration-300 ease-smooth md:hidden ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
-        <nav aria-label="Primary mobile" className="min-h-0">
-          <ul className="divide-y divide-rule px-5 py-2 sm:px-8">
-            {items.map((item, idx) => {
-              const id = item.href.slice(1);
-              const isActive = active === id;
+        <nav aria-label="Primary mobile" className="min-h-0 overflow-hidden" inert={!open}>
+          <ul className="space-y-1 px-5 pb-5 pt-1 sm:px-8">
+            {personalInfo.navigation.map((item) => {
+              const isActive = active === item.href.slice(1);
               return (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    tabIndex={open ? 0 : -1}
                     aria-current={isActive ? "true" : undefined}
-                    className="flex min-h-12 items-center justify-between py-2 text-base font-medium text-primary transition-colors dark:hover:text-accent"
                     onClick={() => setOpen(false)}
+                    className={`flex min-h-12 items-center justify-between rounded-lg px-3 text-base font-medium transition-colors duration-200 ${
+                      isActive ? "bg-primary/[0.07] text-primary" : "text-primary/80 hover:bg-primary/[0.05]"
+                    }`}
                   >
-                    <span className="flex items-center gap-3">
-                      <span className="font-mono text-xs text-muted">
-                        0{idx + 1}
-                      </span>
-                      <span>{item.label}</span>
-                    </span>
-                    {isActive ? (
-                      <span className="inline-flex items-center gap-1.5 font-mono text-xs text-primary dark:text-accent">
-                        <span aria-hidden="true" className="h-1.5 w-1.5 bg-accent" />
-                        <span>Active</span>
-                      </span>
-                    ) : null}
+                    {item.label}
+                    {isActive ? <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" /> : null}
                   </a>
                 </li>
               );

@@ -10,7 +10,7 @@ interface ExternalLinkProps {
 export default function ExternalLink({
   href,
   children,
-  className = "editorial-link group inline-flex items-center gap-1.5 font-medium",
+  className = "link group inline-flex items-center gap-1.5 font-medium",
 }: ExternalLinkProps) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
@@ -19,7 +19,7 @@ export default function ExternalLink({
       <svg
         aria-hidden="true"
         viewBox="0 0 12 12"
-        className="h-3 w-3 shrink-0 transition-transform duration-200 ease-editorial group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        className="h-3 w-3 shrink-0 transition-transform duration-200 ease-smooth group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
