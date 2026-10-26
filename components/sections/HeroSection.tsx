@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { personalInfo } from "@/content/personal";
 
-/** Pillar summaries restate PRD Â§1.3 and link to the section holding the evidence. */
+/** Pillar summaries restate PRD §1.3 and link to the section holding the evidence. */
 const pillars = [
   {
     title: "Data Analytics",
@@ -37,7 +37,7 @@ export default function HeroSection() {
         <div className={portrait ? "lg:col-span-8" : "max-w-4xl"}>
           <p className="inline-flex items-center gap-2 rounded-full border border-rule bg-elevated px-3 py-1 text-[13px] font-medium text-primary/80">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-            {role} Â· {concentration}
+            {role} · {concentration}
           </p>
 
           <h1 id="hero-heading" className="mt-8">
